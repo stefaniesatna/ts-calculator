@@ -1,10 +1,14 @@
 import React, { FC } from "react"
 import CSS from "csstype"
 
-const Display: FC = () => {
+interface Props {
+    value: string
+}
+
+const Display = ({value}: Props) => {
     return (
         <div style={style}>
-            Display
+            {value}
         </div>
     )
 }

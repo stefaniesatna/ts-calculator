@@ -6,7 +6,6 @@ const App: FC = () => {
   return (
     <div style={style}>
       <Calculator />
-      Stefanie Footer
     </div>
   )
 }
@@ -21,7 +20,7 @@ const style: CSS.Properties = {
   width: "100%",
   border: "1px solid black",
   marginTop: "200px",
-  
+
   fontWeight: "600",
   fontFamily: "helvetica",
   fontSize: "x-large"

@@ -1,10 +1,14 @@
 import React, { FC } from "react"
 import CSS from "csstype"
 
-const Numbers: FC = () => {
+interface Props {
+    handleClick(el: string): void;
+}
+
+const Numbers = ({ handleClick }: Props) => {
     const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
     const numberComponents = numbers.map((number: number) => {
-        return <button style={numberStyle}>{number}</button>
+        return <button onClick={() => handleClick(String(number))} style={numberStyle}>{number}</button>
     })
 
     return (
