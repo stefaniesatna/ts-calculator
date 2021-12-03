@@ -7,9 +7,9 @@ import isOperator from "../helpers/isOperator";
 
 const Calculator: FC = () => {
   const [display, setDisplay] = useState("");
+  const lastChar = display[display.length - 1];
 
   const handleClick = (el: string): void => {
-    const lastChar = display[display.length - 1];
 
     // design choice: if operator is repeating, record the last operator clicked
     if (display.length > 0 && isOperator(lastChar) && isOperator(el)) {
@@ -19,7 +19,7 @@ const Calculator: FC = () => {
   };
 
   const handleSubmit = (): void => {
-    if (display.length > 2) {
+    if (display.length > 0 && !isOperator(lastChar)) {
       setDisplay((prevDisplay: string): string => eval(prevDisplay).toString());
     }
   };
