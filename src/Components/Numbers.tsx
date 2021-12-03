@@ -1,5 +1,6 @@
 import React from "react";
 import CSS from "csstype";
+import "../App.css";
 
 interface Props {
   handleClick(el: string): void;
@@ -21,13 +22,14 @@ const Numbers = ({ handleClick }: Props) => {
   ];
 
   const numberComponents = numbers.map((number: string, index: number) => {
-    const buttonStyle = number === "0" ? zeroStyle : numberStyle;
+    // const buttonStyle = number === "0" ? zeroStyle : numberStyle;
+    const buttonStyle = number === "0" ? "button-zero" : "button-num";
 
     return (
       <button
         key={index}
         onClick={() => handleClick(number)}
-        style={buttonStyle}
+        className={buttonStyle}
       >
         {number}
       </button>
@@ -47,25 +49,3 @@ const style: CSS.Properties = {
   columnGap: "20px",
   rowGap: "20px",
 };
-
-const numberStyle: CSS.Properties = {
-  width: "100%",
-  height: "100px",
-  backgroundColor: "#FFFCF9",
-  borderRadius: "10px",
-
-  padding: "0",
-  border: "none",
-  color: "lightcoral",
-  cursor: "pointer",
-
-  fontWeight: "600",
-  fontFamily: "helvetica",
-  fontSize: "x-large",
-};
-
-const zeroStyle: CSS.Properties = {
-    ...numberStyle,
-    gridColumnStart: 1,
-    gridColumnEnd: 3
-}

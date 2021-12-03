@@ -18,7 +18,6 @@ const style: CSS.Properties = {
   alignItems: "center",
 
   width: "100%",
-  border: "1px solid black",
   marginTop: "200px",
 
   fontWeight: "600",

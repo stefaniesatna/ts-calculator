@@ -1,5 +1,6 @@
 import React from "react";
 import CSS from "csstype";
+import "../App.css";
 
 interface Props {
   handleClick(el: string): void;
@@ -16,7 +17,7 @@ const Operators = ({ handleClick, handleSubmit }: Props) => {
         <button
           key={index}
           onClick={onClick}
-          style={operatorStyle}
+          className="button-operator"
         >
           {operator}
         </button>
@@ -35,20 +36,4 @@ const style: CSS.Properties = {
   gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
   columnGap: "20px",
   marginBottom: "20px",
-};
-
-const operatorStyle: CSS.Properties = {
-  width: "100%",
-  height: "100px",
-  backgroundColor: "#ADAEAD",
-  borderRadius: "10px",
-
-  padding: "0",
-  border: "none",
-  color: "#FFFCF9",
-  cursor: "pointer",
-
-  fontWeight: "600",
-  fontFamily: "helvetica",
-  fontSize: "x-large",
 };
