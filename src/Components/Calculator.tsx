@@ -19,7 +19,7 @@ const Calculator: FC = () => {
   };
 
   const handleSubmit = (): void => {
-    if (display.length > 1) {
+    if (display.length > 2) {
       setDisplay((prevDisplay: string): string => eval(prevDisplay).toString());
     }
   };

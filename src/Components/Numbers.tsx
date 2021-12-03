@@ -6,13 +6,28 @@ interface Props {
 }
 
 const Numbers = ({ handleClick }: Props) => {
-  const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-  const numberComponents = numbers.map((number: number, index: number) => {
+  const numbers: string[] = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    ".",
+  ];
+
+  const numberComponents = numbers.map((number: string, index: number) => {
+    const buttonStyle = number === "0" ? zeroStyle : numberStyle;
+
     return (
       <button
         key={index}
-        onClick={() => handleClick(String(number))}
-        style={numberStyle}
+        onClick={() => handleClick(number)}
+        style={buttonStyle}
       >
         {number}
       </button>
@@ -48,3 +63,9 @@ const numberStyle: CSS.Properties = {
   fontFamily: "helvetica",
   fontSize: "x-large",
 };
+
+const zeroStyle: CSS.Properties = {
+    ...numberStyle,
+    gridColumnStart: 1,
+    gridColumnEnd: 3
+}

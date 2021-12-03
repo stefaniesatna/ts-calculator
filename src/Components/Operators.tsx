@@ -10,17 +10,12 @@ const Operators = ({ handleClick, handleSubmit }: Props) => {
   const operators = ["+", "-", "/", "*", "="];
   const operatorComponents = operators.map(
     (operator: string, index: number) => {
-      if (operator === "=") {
-        return (
-          <button key={index} onClick={handleSubmit} style={operatorStyle}>
-            {operator}
-          </button>
-        );
-      }
+      const onClick = operator === "=" ? handleSubmit : () => handleClick(operator);
+
       return (
         <button
           key={index}
-          onClick={() => handleClick(operator)}
+          onClick={onClick}
           style={operatorStyle}
         >
           {operator}
