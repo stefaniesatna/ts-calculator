@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import CSS from "csstype";
-import Calculator from "./components/Calculator";
+import Calculator from "./Components/Calculator";
 
 const App: FC = () => {
   return (
