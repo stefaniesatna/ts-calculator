@@ -1,17 +1,34 @@
-import React, { FC } from "react";
+import React from "react";
 import CSS from "csstype";
 
 interface Props {
   handleClick(el: string): void;
+  handleSubmit(): void;
 }
 
-const Operators = ({ handleClick }: Props) => {
-  const operators = ["+", "-", "/", "x", "="];
-  const operatorComponents = operators.map((operator: string) => (
-    <button onClick={() => handleClick(operator)} style={operatorStyle}>
-      {operator}
-    </button>
-  ));
+const Operators = ({ handleClick, handleSubmit }: Props) => {
+  const operators = ["+", "-", "/", "*", "="];
+  const operatorComponents = operators.map(
+    (operator: string, index: number) => {
+      if (operator === "=") {
+        return (
+          <button key={index} onClick={handleSubmit} style={operatorStyle}>
+            {operator}
+          </button>
+        );
+      }
+      return (
+        <button
+          key={index}
+          onClick={() => handleClick(operator)}
+          style={operatorStyle}
+        >
+          {operator}
+        </button>
+      );
+    }
+  );
+
   return <div style={style}>{operatorComponents}</div>;
 };
 

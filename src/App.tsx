@@ -1,14 +1,14 @@
-import React, {FC} from 'react';
-import CSS from "csstype"
-import Calculator from "./Components/Calculator"
+import React, { FC } from "react";
+import CSS from "csstype";
+import Calculator from "./components/Calculator";
 
 const App: FC = () => {
   return (
     <div style={style}>
       <Calculator />
     </div>
-  )
-}
+  );
+};
 
 export default App;
 
@@ -23,5 +23,5 @@ const style: CSS.Properties = {
 
   fontWeight: "600",
   fontFamily: "helvetica",
-  fontSize: "x-large"
-}
+  fontSize: "x-large",
+};

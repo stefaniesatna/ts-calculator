@@ -1,62 +1,45 @@
-import React, { FC, useState } from "react"
-import CSS from "csstype"
-import Display from "./Display"
-import Numbers from "./Numbers"
-import Operators from "./Operators"
-
+import React, { FC, useState } from "react";
+import CSS from "csstype";
+import Display from "./Display";
+import Numbers from "./Numbers";
+import Operators from "./Operators";
+import isOperator from "../helpers/isOperator";
 
 const Calculator: FC = () => {
+  const [display, setDisplay] = useState("");
 
-    const [display, setDisplay] = useState<string[]>([])
+  const handleClick = (el: string): void => {
+    const lastChar = display[display.length - 1];
 
-    const handleClick = (el: string) => {
-        setDisplay([...display, el])
-        calculate(display)
+    // design choice: if operator is repeating, record the last operator clicked
+    if (display.length > 0 && isOperator(lastChar) && isOperator(el)) {
+      setDisplay((prevDisplay: string): string => prevDisplay.slice(0, -1));
     }
+    setDisplay((prevDisplay: string): string => prevDisplay + el);
+  };
 
-    return (
-        <div style={style}>
-            <Display value={display.join("")}/>
-            <Operators handleClick={handleClick} />
-            <Numbers handleClick={handleClick}/>
-        </div>
-    )
-}
+  const handleSubmit = (): void => {
+    if (display.length > 1) {
+      setDisplay((prevDisplay: string): string => eval(prevDisplay).toString());
+    }
+  };
 
-export default Calculator
+  return (
+    <div style={style}>
+      <Display value={display} />
+      <Operators handleClick={handleClick} handleSubmit={handleSubmit} />
+      <Numbers handleClick={handleClick} />
+    </div>
+  );
+};
+
+export default Calculator;
 
 const style: CSS.Properties = {
-    display: "flex",
-    flexDirection: "column",
+  display: "flex",
+  flexDirection: "column",
 
-    border: "1px green solid",
-    width: "50%",
-    color: "#f08080",
-}
-
-const calculate = (arr: string[]) => {
-    console.log(arr)
-    const reducedArr = []
-    let num = ""
-    let operator = ""
-
-    for (let i = 0; i < arr.length; i++){
-        if (isNaN(parseInt(arr[i]))){
-            if (num !== ""){
-                reducedArr.push(num)
-                num = ""
-            }
-            operator = arr[i]
-        } else {
-            if (operator !== ""){
-                reducedArr.push(operator)
-            }
-            num += arr[i]
-        }
-        console.log("Number: ", num)
-        console.log("Operator: ", operator)
-    }
-    console.log(reducedArr)
-    console.log(parseInt("+"))
-    console.log(typeof parseInt("+"))
-}
+  border: "1px green solid",
+  width: "50%",
+  color: "#f08080",
+};
